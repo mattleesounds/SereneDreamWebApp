@@ -1,7 +1,8 @@
 html, body {
     /*background-color: rgb(33, 26, 26);*/
     text-align: center;
-    background: url(SavasanaViz.mov);
+    background: url(SavasanaViz.mp4);
+    background-size: cover;
     
 }
 /*
