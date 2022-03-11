@@ -1,6 +1,8 @@
 html, body {
-    background-color: rgb(33, 26, 26);
-    text-align: center
+    /*background-color: rgb(33, 26, 26);*/
+    text-align: center;
+    background: url(SavasanaViz.mov);
+    
 }
 /*
 button {
@@ -13,17 +15,26 @@ button {
     border-right: 0px solid white;
     border-left: 120px solid #114a7d;
 
-    Replace play button with image
-   
+    
 }*/
 
 button {
     margin: 25px;
     margin-top: 40px;
-    width: 15%;
+    width: 5%;
     padding: 10%;
     background: url(play-btn2.png);
     background-repeat: no-repeat;
     background-size: 100%;
     border: solid 0px;
+}
+
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    object-fit: cover;
+    z-index: -1;
 }
