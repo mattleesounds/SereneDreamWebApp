@@ -10,8 +10,8 @@ let lazyRiverVizEl = document.getElementById("lazy-river-viz")
 let originVizEl = document.getElementById("origin-viz")
 
 // Creat arrays of audio and vizual elements
-let audioElArray =[savasanaAudioEl, hitMeAudioEl, lazyRiverAudioEl, originAudioEl]
-let vizElArray = [savasanaVizEl, hitMeVizEl, lazyRiverVizEl, originVizEl]
+//let audioElArray =[savasanaAudioEl, hitMeAudioEl, lazyRiverAudioEl, originAudioEl]
+//let vizElArray = [savasanaVizEl, hitMeVizEl, lazyRiverVizEl, originVizEl]
 
 let buttonEl = document.querySelectorAll("button")
 //console.log(isPlaying(savasanaAudioEl))
@@ -20,37 +20,43 @@ let buttonEl = document.querySelectorAll("button")
 function playSavasana(){
     if (savasanaAudioEl.paused){
         
+        // If Savasana is paused...
+        // Hide all other vizualizers
         hitMeVizEl.style.visibility = "hidden";
         //lazyRiverVizEl.style.visibility = "hidden";
-        //originVizEl.style.visibility = "hidden";
+        originVizEl.style.visibility = "hidden";
         savasanaVizEl.style.visibility = "visible";
 
+        // Play desired song and viz
         savasanaAudioEl.play()
         savasanaVizEl.play()
 
+        // Change play button to pause
         toggleBtnToPause(0)
 
-        if (isPlaying(hitMeAudioEl)){
-            hitMeAudioEl.pause()
-            hitMeVizEl.pause()
-            toggleBtnToPlay(1)
-        } else if (isPlaying(lazyRiverAudioEl)){
-            lazyRiverAudioEl.pause()
-            lazyRiverVizEl.pause()
-            toggleBtnToPlay(2)
-        } else if (isPlaying(originAudioEl)){
+        // pause all other songs
+        if(isPlaying(originAudioEl)){
             originAudioEl.pause()
             originVizEl.pause()
             toggleBtnToPlay(3)
         }
+        if (isPlaying(hitMeAudioEl)){
+            hitMeAudioEl.pause()
+            hitMeVizEl.pause()
+            toggleBtnToPlay(1)
+        }//else 
+        if(isPlaying(lazyRiverAudioEl)){
+            lazyRiverAudioEl.pause()
+            lazyRiverVizEl.pause()
+            toggleBtnToPlay(2)
+        }//else
+        
     } else {
+        // If Savasana is playing...
+        // pause audio and video and change pause button to play
         savasanaAudioEl.pause()
         savasanaVizEl.pause()
-        toggleBtnToPlay(0)
-
-        toggleBtnToPause(1)
-        toggleBtnToPause(2)
-        toggleBtnToPause(3)
+        toggleBtnToPlay(0)      
     }
 }
 
@@ -60,7 +66,7 @@ function playHitMe(){
 
         savasanaVizEl.style.visibility = "hidden";
         //lazyRiverVizEl.style.visibility = "hidden";
-        //originVizEl.style.visibility = "hidden";
+        originVizEl.style.visibility = "hidden";
         hitMeVizEl.style.visibility = "visible";
 
         
@@ -68,19 +74,20 @@ function playHitMe(){
 
         hitMeAudioEl.play()
         hitMeVizEl.play()
+        if(isPlaying(originAudioEl)){
+            originAudioEl.pause()
+            originVizEl.pause()
+            toggleBtnToPlay(3)
+        }
         if (isPlaying(savasanaAudioEl)){
             savasanaAudioEl.pause()
             savasanaVizEl.pause()
             toggleBtnToPlay(0)
         } else if (isPlaying(lazyRiverAudioEl)){
             lazyRiverAudioEl.pause()
-            lazyRiverVizEl.Play()
+            lazyRiverVizEl.pause()
             toggleBtnToPlay(2)
-        } else if (isPlaying(originAudioEl)){
-            originAudioEl.pause()
-            originVizEl.pause()
-            toggleBtnToPlay(3)
-        }
+        } 
     } else {
         hitMeAudioEl.pause()
         hitMeVizEl.pause()
@@ -89,6 +96,46 @@ function playHitMe(){
        
         
         
+    }
+}
+
+function playOrigin() {
+    if (originAudioEl.paused){
+        
+        // If chosen song is paused...
+        // Hide all other vizualizers and make choice's video visible
+        hitMeVizEl.style.visibility = "hidden";
+        //lazyRiverVizEl.style.visibility = "hidden";
+        originVizEl.style.visibility = "visible";
+        savasanaVizEl.style.visibility = "hidden";
+
+        // Play desired song and viz
+        originAudioEl.play()
+        originVizEl.play()
+
+        // Change play button to pause
+        toggleBtnToPause(3)
+
+        // pause all other songs
+        if(isPlaying(savasanaAudioEl)){
+            savasanaAudioEl.pause()
+            savasanaVizEl.pause()
+            toggleBtnToPlay(0)
+        }else if(isPlaying(hitMeAudioEl)){
+            hitMeAudioEl.pause()
+            hitMeVizEl.pause()
+            toggleBtnToPlay(1)
+        }else if(isPlaying(lazyRiverAudioEl)){
+            lazyRiverAudioEl.pause()
+            lazyRiverVizEl.pause()
+            toggleBtnToPlay(2)
+        } 
+    } else {
+        // If chosen song is playing...
+        // pause audio and video and change pause button to play
+        originAudioEl.pause()
+        originVizEl.pause()
+        toggleBtnToPlay(3)      
     }
 }
 
