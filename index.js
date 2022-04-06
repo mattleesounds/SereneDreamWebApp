@@ -1,3 +1,16 @@
+import { StrictMode } from "react"
+import ReactDOM from "react-dom"
+
+import ImplementSigning from "./ ImplementSigning"
+
+const connectWalletElement = document.getElementById("connect-wallet-container")
+ReactDOM.render(
+    <StrictMode>
+        <ImplementSigning />
+    </StrictMode>,
+    connectWalletElement
+)
+
 //Grab audio and video elements
 let savasanaAudioEl = document.getElementById("savasana-file")
 let hitMeAudioEl = document.getElementById("hit-me-audio")
