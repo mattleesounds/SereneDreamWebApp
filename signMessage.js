@@ -30,6 +30,8 @@ async function signMessage(){
     const signature = await signer.signMessage(message)
     const address = await signer.getAddress()
 
+    ethers.util.verifyMessage(message, signature)
+
     addressLog += address + ", "
     console.log(addressLog)
 
