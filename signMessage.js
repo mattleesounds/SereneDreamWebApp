@@ -1,6 +1,7 @@
 //const { ethers } = require("ethers");
 
 //Link mysql2 library to store user info
+const { ethers } = require('ethers');
 var mysql = require('mysql2');
 
 // A Web3Provider wraps a standard Web3 provider, which is
@@ -28,33 +29,43 @@ async function sign(){
     const signature = await signer.signMessage(message)
     const address = await signer.getAddress()
     
+    
     //Check if message has been verified from this address
     //If so, connect to listeners database, then add address and sigature to listener_data table
-    if (address == ethers.util.verifyMessage(message, signature)){
-      var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "leonardo11",
-        database: "listeners"
-      });
+    // if (verifyMessage(address, message, signature)){
+    //   var con = mysql.createConnection({
+    //     host: "localhost",
+    //     user: "root",
+    //     password: "leonardo11",
+    //     database: "listeners"
+    //   });
       
-      con.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected!");
-        var sql = "INSERT INTO listener_data (publicKey, signature) VALUES (?, ?)";
-        con.query(sql, [address, signature], function (err, result) {
-          if (err) throw err;
-          console.log("1 record inserted");
-        });
-      });
-    }
+    //   con.connect(function(err) {
+    //     if (err) throw err;
+    //     console.log("Connected!");
+    //     var sql = "INSERT INTO listener_data (publicKey, signature) VALUES (?, ?)";
+    //     con.query(sql, [address, signature], function (err, result) {
+    //       if (err) throw err;
+    //       console.log("1 record inserted");
+    //     });
+    //   });
+    // }
 
    
 
 }
 
+// function verifyMessage(address, message, signature) {
+//   if(address == ethers.utils.verifyMessage(message, signature)){
+//     return true;
+//   }
+//   else {
+//     return false;
+//   }
+// }
 
-/*
+
+
 const signMessage = async ({ setError, message }) => {
     try {
       console.log({ message });
@@ -76,7 +87,7 @@ const signMessage = async ({ setError, message }) => {
       setError(err.message);
     }
   };
-*/
+
 //function a() {
 //    console.log(aaaaaaaaaaaaaa)
 //}
