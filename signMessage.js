@@ -1,7 +1,6 @@
-//const { ethers } = require("ethers");
 
 //Link mysql2 library to store user info
-const { ethers } = require('ethers');
+import { ethers } from 'ethers';
 var mysql = require('mysql2');
 
 // A Web3Provider wraps a standard Web3 provider, which is
@@ -10,6 +9,8 @@ const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 //------------------------------------------------------------------------
 //Sign Message
+
+document.getElementById("connect-wallet").addEventListener("click", signMessage);
 
 async function sign(){
 
